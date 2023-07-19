@@ -12,6 +12,30 @@ let playlist = [
 // Middleware for parsing JSON bodies
 app.use(express.json());
 
+// Get homepage
+app.get("/", (req, res) => {
+  res.send({
+    "Playlist spotify": "Homework 2.3",
+    "/playlist": "Melihat semua lagu yang ada di playlist",
+    "/playlist/:id": "Melihat lagu dengan id tertentu sudah berapa kali play",
+    "/playlist/most-played": "Mengurutkan lagu berdasarkan playCount",
+    "/playlist/:id/play":
+      "Memainkan lagu dengan id tertentu (otomatis menambahkan 1 playcount)",
+    "Selain itu":
+      'juga bisa untuk melakukan "POST" lagu baru, "PUT" untuk mengubah playcount suatu lagu, "DELETE" untuk menghapus data dari suatu lagu dengan id tertentu',
+  });
+});
+
+// Get all songs in the playlist
+app.get("/playlist", (req, res) => {
+  const allSongs = playlist.map((song) => {
+    const { id, title, playCount } = song;
+    return { id, title, playCount };
+  });
+
+  res.json(allSongs);
+});
+
 // Get songs sorted by most played
 app.get("/playlist/most-played", (req, res) => {
   const sortedPlaylist = playlist.sort((a, b) => b.playCount - a.playCount);
@@ -67,16 +91,6 @@ app.post("/playlist", (req, res) => {
 
     res.json({ message: "Song added successfully", id: newId });
   }
-});
-
-// Get all songs in the playlist
-app.get("/playlist", (req, res) => {
-  const allSongs = playlist.map((song) => {
-    const { id, title, playCount } = song;
-    return { id, title, playCount };
-  });
-
-  res.json(allSongs);
 });
 
 // Update play count of a song

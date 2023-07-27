@@ -1,4 +1,3 @@
-// app.js
 const express = require("express");
 const bodyParser = require("body-parser");
 const connectDB = require("./utils/db");
@@ -8,17 +7,20 @@ const commentRoutes = require("./routes/commentRoutes");
 
 const app = express();
 
-// Middleware
 app.use(bodyParser.json());
 
-// Routes
 app.use("/videos", videoRoutes);
 app.use("/products", productRoutes);
 app.use("/comments", commentRoutes);
 
-// Connect to MongoDB
+app.get("/", (req, res) => {
+  res.json({
+    API_list:
+      "https://gist.github.com/mfarizalpasha/46f488af9aa27988803ae3decf917c48",
+  });
+});
+
 connectDB().then(() => {
-  // Start the server
   app.listen(3000, () => {
     console.log("Server is running on http://localhost:3000");
   });

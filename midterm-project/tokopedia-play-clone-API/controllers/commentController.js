@@ -1,4 +1,3 @@
-// controllers/commentController.js
 const { Comment, Video } = require("../models");
 
 exports.getCommentList = async (req, res) => {
@@ -10,7 +9,6 @@ exports.getCommentList = async (req, res) => {
   }
 };
 
-// Fungsi untuk mendapatkan daftar komentar berdasarkan videoID
 exports.getCommentDetailByVideo = async (req, res) => {
   try {
     const videoID = req.params.videoID;
@@ -21,7 +19,6 @@ exports.getCommentDetailByVideo = async (req, res) => {
   }
 };
 
-// Fungsi untuk submit komentar berdasarkan videoID
 exports.submitComment = async (req, res) => {
   try {
     const { username, comment, videoID } = req.body;
@@ -30,7 +27,6 @@ exports.submitComment = async (req, res) => {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
-    // Verifikasi apakah videoID yang diberikan ada di koleksi video
     const existingVideo = await Video.findOne({ videoID });
 
     if (!existingVideo) {
@@ -47,7 +43,6 @@ exports.submitComment = async (req, res) => {
   }
 };
 
-// Fungsi untuk mengubah komentar berdasarkan CommentID
 exports.updateComment = async (req, res) => {
   try {
     const commentID = req.params.commentID;
@@ -72,7 +67,6 @@ exports.updateComment = async (req, res) => {
   }
 };
 
-// Fungsi untuk menghapus komentar berdasarkan CommentID
 exports.deleteComment = async (req, res) => {
   try {
     const commentID = req.params.commentID;

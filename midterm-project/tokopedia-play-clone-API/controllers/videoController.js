@@ -1,8 +1,5 @@
-// controllers/videoController.js
 const { Video } = require("../models");
-const mongoose = require("mongoose");
 
-// Fungsi untuk mendapatkan daftar video
 exports.getVideoList = async (req, res) => {
   try {
     const videos = await Video.find();
@@ -12,7 +9,6 @@ exports.getVideoList = async (req, res) => {
   }
 };
 
-// Fungsi untuk mendapatkan detail video berdasarkan videoID
 exports.getVideoDetail = async (req, res) => {
   try {
     const videoID = req.params.videoID;
@@ -27,7 +23,6 @@ exports.getVideoDetail = async (req, res) => {
   }
 };
 
-// Fungsi untuk menambahkan video baru
 exports.addVideo = async (req, res) => {
   try {
     const { thumbnailUrl, videoID } = req.body;
@@ -49,7 +44,6 @@ exports.addVideo = async (req, res) => {
   }
 };
 
-// Fungsi untuk mengupdate video berdasarkan videoID
 exports.updateVideo = async (req, res) => {
   try {
     const videoID = req.params.videoID;
@@ -72,7 +66,6 @@ exports.updateVideo = async (req, res) => {
   }
 };
 
-// Fungsi untuk menghapus video berdasarkan videoID
 exports.deleteVideo = async (req, res) => {
   try {
     const videoID = req.params.videoID;

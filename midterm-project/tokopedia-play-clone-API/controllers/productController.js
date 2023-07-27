@@ -1,7 +1,5 @@
-// controllers/productController.js
 const { Product, Video } = require("../models");
 
-// Fungsi untuk mendapatkan daftar produk
 exports.getProductList = async (req, res) => {
   try {
     const products = await Product.find();
@@ -11,7 +9,6 @@ exports.getProductList = async (req, res) => {
   }
 };
 
-// Fungsi untuk mendapatkan detail produk berdasarkan ProductID
 exports.getProductDetail = async (req, res) => {
   try {
     const productID = req.params.productID;
@@ -28,7 +25,6 @@ exports.getProductDetail = async (req, res) => {
   }
 };
 
-// Fungsi untuk menambahkan product baru
 exports.addProduct = async (req, res) => {
   try {
     const { link, title, price, videoID, productID } = req.body;
@@ -37,7 +33,6 @@ exports.addProduct = async (req, res) => {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
-    // Verifikasi apakah videoID yang diberikan ada di koleksi video
     const existingVideo = await Video.findOne({ videoID });
 
     if (!existingVideo) {
@@ -52,7 +47,6 @@ exports.addProduct = async (req, res) => {
       return res.status(409).json({ error: "ProductID already exists" });
     }
 
-    // Lanjutkan dengan menambahkan product jika videoID valid
     const newProduct = new Product({ link, title, price, videoID, productID });
     await newProduct.save();
 
@@ -63,7 +57,6 @@ exports.addProduct = async (req, res) => {
   }
 };
 
-// Fungsi untuk mengupdate product berdasarkan ProductID
 exports.updateProduct = async (req, res) => {
   try {
     const productID = req.params.productID;
@@ -72,14 +65,12 @@ exports.updateProduct = async (req, res) => {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
-    // Verifikasi apakah product dengan productID yang diberikan ada di koleksi product
     const existingProduct = await Product.findOne({ productID });
 
     if (!existingProduct) {
       return res.status(404).json({ error: "Product not found" });
     }
 
-    // Lanjutkan dengan mengupdate product jika productID valid
     await Product.findOneAndUpdate(
       { productID },
       { link, title, price },
@@ -92,19 +83,16 @@ exports.updateProduct = async (req, res) => {
   }
 };
 
-// Fungsi untuk menghapus product berdasarkan ProductID
 exports.deleteProduct = async (req, res) => {
   try {
     const productID = req.params.productID;
 
-    // Verifikasi apakah product dengan productID yang diberikan ada di koleksi product
     const existingProduct = await Product.findOne({ productID });
 
     if (!existingProduct) {
       return res.status(404).json({ error: "Product not found" });
     }
 
-    // Lanjutkan dengan menghapus product jika productID valid
     await Product.findOneAndRemove({ productID });
 
     res.json({ success: "Product deleted successfully" });

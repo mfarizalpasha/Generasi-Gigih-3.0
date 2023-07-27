@@ -55,7 +55,7 @@ The `comments` collection stores comments for videos. Each document in the colle
 
 Gist link: [API Request and Response](https://gist.github.com/mfarizalpasha/46f488af9aa27988803ae3decf917c48)
 
-## iv. How to run in local (make sure grader can run your API in grader local machine after following your “how to run”!)
+## iv. How to run in local
 
 To run the Tokopedia Play Clone API on your local machine, follow these steps:
 

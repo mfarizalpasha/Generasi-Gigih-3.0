@@ -1,6 +1,6 @@
 # Tokopedia Play Clone API
 
-## i. Explain your database structure
+## i. Database Structure
 
 The database structure of the Tokopedia Play Clone API consists of one main collections: `videos` , and two related collection: `comments` and `products`.
 
@@ -33,7 +33,7 @@ The `comments` collection stores comments for videos. Each document in the colle
 - `timestamp`: The timestamp of when the comment was created.
 - `videoID`: A reference to the video that the comment is related to.
 
-## ii. Explain API structure
+## ii. API Structure
 
 #### API Structure
 
@@ -51,7 +51,9 @@ The `comments` collection stores comments for videos. Each document in the colle
 
 ##### 7. .env: Environment file for storing sensitive information like the database connection URI. Using an environment file allows you to keep sensitive information secure and separate from the codebase.
 
-## iii. List API request and response (preference format gist)
+##### 8. config.js: It is a way to manage environment-specific variables, API keys, database connection URIs, and other configuration options in a centralized manner.
+
+## iii. List API request and response
 
 Gist link: [API Request and Response](https://gist.github.com/mfarizalpasha/46f488af9aa27988803ae3decf917c48)
 
